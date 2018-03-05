@@ -1,0 +1,763 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20180306 00:08:16.131" generator="Robot 3.0.2 (Python 2.7.11 on win32)">
+<suite source="C:\robotautomation\NewsCorp\Digital\TestSuites\Search.robot" id="s1" name="Search">
+<test id="s1-t1" name="Test Filter widgets by device which have the value mobile">
+<kw name="Given the user has an API to find the widgets" library="BddKeywords">
+<kw name="user reads the JSON file" library="widget">
+<kw name="Load JSON From File" library="JSONLibrary">
+<doc>Load JSON from file.</doc>
+<arguments>
+<arg>../../Digital/API/example.json</arg>
+</arguments>
+<assign>
+<var>${json_object}</var>
+</assign>
+<msg timestamp="20180306 00:08:16.690" level="INFO">${json_object} = {u'image gallery': {u'device': u'desktop', u'site': [u'perthnow', u'dailytelegraph']}, u'video': {u'device': u'desktop', u'site': [u'dailytelegraph', u'theaustralian']}, u'news story': {u'device': u'a...</msg>
+<status status="PASS" endtime="20180306 00:08:16.690" starttime="20180306 00:08:16.688"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${json_object}</arg>
+</arguments>
+<msg timestamp="20180306 00:08:16.693" level="INFO">${json_object} = {u'image gallery': {u'device': u'desktop', u'site': [u'perthnow', u'dailytelegraph']}, u'video': {u'device': u'desktop', u'site': [u'dailytelegraph', u'theaustralian']}, u'news story': {u'device': u'a...</msg>
+<status status="PASS" endtime="20180306 00:08:16.693" starttime="20180306 00:08:16.691"></status>
+</kw>
+<status status="PASS" endtime="20180306 00:08:16.694" starttime="20180306 00:08:16.686"></status>
+</kw>
+<status status="PASS" endtime="20180306 00:08:16.695" starttime="20180306 00:08:16.683"></status>
+</kw>
+<kw name="When the user filter widgets by device which have the value mobile" library="BddKeywords">
+<kw name="Get key based on attribute matching key value" library="widget">
+<arguments>
+<arg>device</arg>
+<arg>mobile</arg>
+</arguments>
+<kw name="Create List" library="BuiltIn">
+<doc>Returns a list containing given items.</doc>
+<assign>
+<var>${final_list}</var>
+</assign>
+<msg timestamp="20180306 00:08:16.700" level="INFO">${final_list} = []</msg>
+<status status="PASS" endtime="20180306 00:08:16.700" starttime="20180306 00:08:16.699"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>The empty list is ${final_list}</arg>
+</arguments>
+<status status="PASS" endtime="20180306 00:08:16.703" starttime="20180306 00:08:16.701"></status>
+</kw>
+<kw name="Get Dictionary Keys" library="Collections">
+<doc>Returns keys of the given ``dictionary``.</doc>
+<arguments>
+<arg>${json_object}</arg>
+</arguments>
+<assign>
+<var>@{keys_list}</var>
+</assign>
+<msg timestamp="20180306 00:08:16.705" level="INFO">@{keys_list} = [ ad | image gallery | news story | query | video ]</msg>
+<status status="PASS" endtime="20180306 00:08:16.706" starttime="20180306 00:08:16.704"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>The keys list value is ${keys_list}</arg>
+</arguments>
+<status status="PASS" endtime="20180306 00:08:16.708" starttime="20180306 00:08:16.706"></status>
+</kw>
+<kw type="for" name="${key} IN [ @{keys_list} ]">
+<kw type="foritem" name="${key} = ad">
+<kw name="Get From Dictionary" library="Collections">
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<arguments>
+<arg>${json_object}</arg>
+<arg>${key}</arg>
+</arguments>
+<assign>
+<var>${value}</var>
+</assign>
+<msg timestamp="20180306 00:08:16.712" level="INFO">${value} = {u'device': u'mobile', u'site': u'all'}</msg>
+<status status="PASS" endtime="20180306 00:08:16.713" starttime="20180306 00:08:16.710"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>The value of ${key} is ${value}</arg>
+</arguments>
+<status status="PASS" endtime="20180306 00:08:16.715" starttime="20180306 00:08:16.714"></status>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<arguments>
+<arg>${value}</arg>
+<arg>${matched_key}</arg>
+</arguments>
+<assign>
+<var>${device_name}</var>
+</assign>
+<msg timestamp="20180306 00:08:16.717" level="INFO">${device_name} = mobile</msg>
+<status status="PASS" endtime="20180306 00:08:16.717" starttime="20180306 00:08:16.716"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${device_name}'=='${matched_value}' or '${device_name}'=='all'</arg>
+<arg>append to list</arg>
+<arg>${final_list}</arg>
+<arg>${key}</arg>
+</arguments>
+<kw name="Append To List" library="Collections">
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<arguments>
+<arg>${final_list}</arg>
+<arg>${key}</arg>
+</arguments>
+<status status="PASS" endtime="20180306 00:08:16.721" starttime="20180306 00:08:16.720"></status>
+</kw>
+<status status="PASS" endtime="20180306 00:08:16.722" starttime="20180306 00:08:16.718"></status>
+</kw>
+<status status="PASS" endtime="20180306 00:08:16.722" starttime="20180306 00:08:16.709"></status>
+</kw>
+<kw type="foritem" name="${key} = image gallery">
+<kw name="Get From Dictionary" library="Collections">
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<arguments>
+<arg>${json_object}</arg>
+<arg>${key}</arg>
+</arguments>
+<assign>
+<var>${value}</var>
+</assign>
+<msg timestamp="20180306 00:08:16.724" level="INFO">${value} = {u'device': u'desktop', u'site': [u'perthnow', u'dailytelegraph']}</msg>
+<status status="PASS" endtime="20180306 00:08:16.724" starttime="20180306 00:08:16.723"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>The value of ${key} is ${value}</arg>
+</arguments>
+<status status="PASS" endtime="20180306 00:08:16.726" starttime="20180306 00:08:16.725"></status>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<arguments>
+<arg>${value}</arg>
+<arg>${matched_key}</arg>
+</arguments>
+<assign>
+<var>${device_name}</var>
+</assign>
+<msg timestamp="20180306 00:08:16.728" level="INFO">${device_name} = desktop</msg>
+<status status="PASS" endtime="20180306 00:08:16.728" starttime="20180306 00:08:16.727"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${device_name}'=='${matched_value}' or '${device_name}'=='all'</arg>
+<arg>append to list</arg>
+<arg>${final_list}</arg>
+<arg>${key}</arg>
+</arguments>
+<status status="PASS" endtime="20180306 00:08:16.731" starttime="20180306 00:08:16.729"></status>
+</kw>
+<status status="PASS" endtime="20180306 00:08:16.731" starttime="20180306 00:08:16.722"></status>
+</kw>
+<kw type="foritem" name="${key} = news story">
+<kw name="Get From Dictionary" library="Collections">
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<arguments>
+<arg>${json_object}</arg>
+<arg>${key}</arg>
+</arguments>
+<assign>
+<var>${value}</var>
+</assign>
+<msg timestamp="20180306 00:08:16.733" level="INFO">${value} = {u'device': u'all', u'site': u'all'}</msg>
+<status status="PASS" endtime="20180306 00:08:16.733" starttime="20180306 00:08:16.732"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>The value of ${key} is ${value}</arg>
+</arguments>
+<status status="PASS" endtime="20180306 00:08:16.735" starttime="20180306 00:08:16.734"></status>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<arguments>
+<arg>${value}</arg>
+<arg>${matched_key}</arg>
+</arguments>
+<assign>
+<var>${device_name}</var>
+</assign>
+<msg timestamp="20180306 00:08:16.737" level="INFO">${device_name} = all</msg>
+<status status="PASS" endtime="20180306 00:08:16.737" starttime="20180306 00:08:16.735"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${device_name}'=='${matched_value}' or '${device_name}'=='all'</arg>
+<arg>append to list</arg>
+<arg>${final_list}</arg>
+<arg>${key}</arg>
+</arguments>
+<kw name="Append To List" library="Collections">
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<arguments>
+<arg>${final_list}</arg>
+<arg>${key}</arg>
+</arguments>
+<status status="PASS" endtime="20180306 00:08:16.741" starttime="20180306 00:08:16.740"></status>
+</kw>
+<status status="PASS" endtime="20180306 00:08:16.741" starttime="20180306 00:08:16.738"></status>
+</kw>
+<status status="PASS" endtime="20180306 00:08:16.741" starttime="20180306 00:08:16.731"></status>
+</kw>
+<kw type="foritem" name="${key} = query">
+<kw name="Get From Dictionary" library="Collections">
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<arguments>
+<arg>${json_object}</arg>
+<arg>${key}</arg>
+</arguments>
+<assign>
+<var>${value}</var>
+</assign>
+<msg timestamp="20180306 00:08:16.743" level="INFO">${value} = {u'device': u'all', u'site': [u'perthnow', u'theaustralian']}</msg>
+<status status="PASS" endtime="20180306 00:08:16.743" starttime="20180306 00:08:16.742"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>The value of ${key} is ${value}</arg>
+</arguments>
+<status status="PASS" endtime="20180306 00:08:16.745" starttime="20180306 00:08:16.744"></status>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<arguments>
+<arg>${value}</arg>
+<arg>${matched_key}</arg>
+</arguments>
+<assign>
+<var>${device_name}</var>
+</assign>
+<msg timestamp="20180306 00:08:16.747" level="INFO">${device_name} = all</msg>
+<status status="PASS" endtime="20180306 00:08:16.747" starttime="20180306 00:08:16.746"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${device_name}'=='${matched_value}' or '${device_name}'=='all'</arg>
+<arg>append to list</arg>
+<arg>${final_list}</arg>
+<arg>${key}</arg>
+</arguments>
+<kw name="Append To List" library="Collections">
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<arguments>
+<arg>${final_list}</arg>
+<arg>${key}</arg>
+</arguments>
+<status status="PASS" endtime="20180306 00:08:16.750" starttime="20180306 00:08:16.749"></status>
+</kw>
+<status status="PASS" endtime="20180306 00:08:16.751" starttime="20180306 00:08:16.748"></status>
+</kw>
+<status status="PASS" endtime="20180306 00:08:16.751" starttime="20180306 00:08:16.742"></status>
+</kw>
+<kw type="foritem" name="${key} = video">
+<kw name="Get From Dictionary" library="Collections">
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<arguments>
+<arg>${json_object}</arg>
+<arg>${key}</arg>
+</arguments>
+<assign>
+<var>${value}</var>
+</assign>
+<msg timestamp="20180306 00:08:16.753" level="INFO">${value} = {u'device': u'desktop', u'site': [u'dailytelegraph', u'theaustralian']}</msg>
+<status status="PASS" endtime="20180306 00:08:16.753" starttime="20180306 00:08:16.752"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>The value of ${key} is ${value}</arg>
+</arguments>
+<status status="PASS" endtime="20180306 00:08:16.755" starttime="20180306 00:08:16.754"></status>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<arguments>
+<arg>${value}</arg>
+<arg>${matched_key}</arg>
+</arguments>
+<assign>
+<var>${device_name}</var>
+</assign>
+<msg timestamp="20180306 00:08:16.757" level="INFO">${device_name} = desktop</msg>
+<status status="PASS" endtime="20180306 00:08:16.757" starttime="20180306 00:08:16.756"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${device_name}'=='${matched_value}' or '${device_name}'=='all'</arg>
+<arg>append to list</arg>
+<arg>${final_list}</arg>
+<arg>${key}</arg>
+</arguments>
+<status status="PASS" endtime="20180306 00:08:16.759" starttime="20180306 00:08:16.758"></status>
+</kw>
+<status status="PASS" endtime="20180306 00:08:16.759" starttime="20180306 00:08:16.751"></status>
+</kw>
+<status status="PASS" endtime="20180306 00:08:16.759" starttime="20180306 00:08:16.709"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>The final list is ${final_list}</arg>
+</arguments>
+<status status="PASS" endtime="20180306 00:08:16.761" starttime="20180306 00:08:16.760"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${final_list}</arg>
+</arguments>
+<msg timestamp="20180306 00:08:16.763" level="INFO">${final_list} = [u'ad', u'news story', u'query']</msg>
+<status status="PASS" endtime="20180306 00:08:16.763" starttime="20180306 00:08:16.762"></status>
+</kw>
+<status status="PASS" endtime="20180306 00:08:16.764" starttime="20180306 00:08:16.697"></status>
+</kw>
+<status status="PASS" endtime="20180306 00:08:16.764" starttime="20180306 00:08:16.696"></status>
+</kw>
+<kw name="Then the user should see the device mobile matching list" library="widget">
+<kw name="List Should Contain Value" library="Collections">
+<doc>Fails if the ``value`` is not found from ``list``.</doc>
+<arguments>
+<arg>${final_list}</arg>
+<arg>ad</arg>
+</arguments>
+<status status="PASS" endtime="20180306 00:08:16.767" starttime="20180306 00:08:16.766"></status>
+</kw>
+<kw name="List Should Contain Value" library="Collections">
+<doc>Fails if the ``value`` is not found from ``list``.</doc>
+<arguments>
+<arg>${final_list}</arg>
+<arg>news story</arg>
+</arguments>
+<status status="PASS" endtime="20180306 00:08:16.769" starttime="20180306 00:08:16.768"></status>
+</kw>
+<kw name="List Should Contain Value" library="Collections">
+<doc>Fails if the ``value`` is not found from ``list``.</doc>
+<arguments>
+<arg>${final_list}</arg>
+<arg>query</arg>
+</arguments>
+<status status="PASS" endtime="20180306 00:08:16.770" starttime="20180306 00:08:16.770"></status>
+</kw>
+<kw name="List Should Not Contain Value" library="Collections">
+<doc>Fails if the ``value`` is found from ``list``.</doc>
+<arguments>
+<arg>${final_list}</arg>
+<arg>video</arg>
+</arguments>
+<status status="PASS" endtime="20180306 00:08:16.772" starttime="20180306 00:08:16.771"></status>
+</kw>
+<kw name="List Should Not Contain Value" library="Collections">
+<doc>Fails if the ``value`` is found from ``list``.</doc>
+<arguments>
+<arg>${final_list}</arg>
+<arg>image gallery</arg>
+</arguments>
+<status status="PASS" endtime="20180306 00:08:16.774" starttime="20180306 00:08:16.773"></status>
+</kw>
+<status status="PASS" endtime="20180306 00:08:16.774" starttime="20180306 00:08:16.765"></status>
+</kw>
+<status status="PASS" endtime="20180306 00:08:16.775" critical="yes" starttime="20180306 00:08:16.679"></status>
+</test>
+<test id="s1-t2" name="Test Filter widgets by device which have the value all">
+<kw name="Given the user has an API to find the widgets" library="BddKeywords">
+<kw name="user reads the JSON file" library="widget">
+<kw name="Load JSON From File" library="JSONLibrary">
+<doc>Load JSON from file.</doc>
+<arguments>
+<arg>../../Digital/API/example.json</arg>
+</arguments>
+<assign>
+<var>${json_object}</var>
+</assign>
+<msg timestamp="20180306 00:08:16.783" level="INFO">${json_object} = {u'image gallery': {u'device': u'desktop', u'site': [u'perthnow', u'dailytelegraph']}, u'video': {u'device': u'desktop', u'site': [u'dailytelegraph', u'theaustralian']}, u'news story': {u'device': u'a...</msg>
+<status status="PASS" endtime="20180306 00:08:16.783" starttime="20180306 00:08:16.781"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${json_object}</arg>
+</arguments>
+<msg timestamp="20180306 00:08:16.788" level="INFO">${json_object} = {u'image gallery': {u'device': u'desktop', u'site': [u'perthnow', u'dailytelegraph']}, u'video': {u'device': u'desktop', u'site': [u'dailytelegraph', u'theaustralian']}, u'news story': {u'device': u'a...</msg>
+<status status="PASS" endtime="20180306 00:08:16.789" starttime="20180306 00:08:16.784"></status>
+</kw>
+<status status="PASS" endtime="20180306 00:08:16.789" starttime="20180306 00:08:16.780"></status>
+</kw>
+<status status="PASS" endtime="20180306 00:08:16.789" starttime="20180306 00:08:16.779"></status>
+</kw>
+<kw name="When the user filter widgets by device which have the value all" library="BddKeywords">
+<kw name="Get key based on attribute matching key value" library="widget">
+<arguments>
+<arg>device</arg>
+<arg>all</arg>
+</arguments>
+<kw name="Create List" library="BuiltIn">
+<doc>Returns a list containing given items.</doc>
+<assign>
+<var>${final_list}</var>
+</assign>
+<msg timestamp="20180306 00:08:16.793" level="INFO">${final_list} = []</msg>
+<status status="PASS" endtime="20180306 00:08:16.793" starttime="20180306 00:08:16.793"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>The empty list is ${final_list}</arg>
+</arguments>
+<status status="PASS" endtime="20180306 00:08:16.795" starttime="20180306 00:08:16.794"></status>
+</kw>
+<kw name="Get Dictionary Keys" library="Collections">
+<doc>Returns keys of the given ``dictionary``.</doc>
+<arguments>
+<arg>${json_object}</arg>
+</arguments>
+<assign>
+<var>@{keys_list}</var>
+</assign>
+<msg timestamp="20180306 00:08:16.797" level="INFO">@{keys_list} = [ ad | image gallery | news story | query | video ]</msg>
+<status status="PASS" endtime="20180306 00:08:16.797" starttime="20180306 00:08:16.796"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>The keys list value is ${keys_list}</arg>
+</arguments>
+<status status="PASS" endtime="20180306 00:08:16.798" starttime="20180306 00:08:16.797"></status>
+</kw>
+<kw type="for" name="${key} IN [ @{keys_list} ]">
+<kw type="foritem" name="${key} = ad">
+<kw name="Get From Dictionary" library="Collections">
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<arguments>
+<arg>${json_object}</arg>
+<arg>${key}</arg>
+</arguments>
+<assign>
+<var>${value}</var>
+</assign>
+<msg timestamp="20180306 00:08:16.801" level="INFO">${value} = {u'device': u'mobile', u'site': u'all'}</msg>
+<status status="PASS" endtime="20180306 00:08:16.801" starttime="20180306 00:08:16.800"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>The value of ${key} is ${value}</arg>
+</arguments>
+<status status="PASS" endtime="20180306 00:08:16.803" starttime="20180306 00:08:16.802"></status>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<arguments>
+<arg>${value}</arg>
+<arg>${matched_key}</arg>
+</arguments>
+<assign>
+<var>${device_name}</var>
+</assign>
+<msg timestamp="20180306 00:08:16.805" level="INFO">${device_name} = mobile</msg>
+<status status="PASS" endtime="20180306 00:08:16.805" starttime="20180306 00:08:16.803"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${device_name}'=='${matched_value}' or '${device_name}'=='all'</arg>
+<arg>append to list</arg>
+<arg>${final_list}</arg>
+<arg>${key}</arg>
+</arguments>
+<status status="PASS" endtime="20180306 00:08:16.807" starttime="20180306 00:08:16.805"></status>
+</kw>
+<status status="PASS" endtime="20180306 00:08:16.807" starttime="20180306 00:08:16.799"></status>
+</kw>
+<kw type="foritem" name="${key} = image gallery">
+<kw name="Get From Dictionary" library="Collections">
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<arguments>
+<arg>${json_object}</arg>
+<arg>${key}</arg>
+</arguments>
+<assign>
+<var>${value}</var>
+</assign>
+<msg timestamp="20180306 00:08:16.809" level="INFO">${value} = {u'device': u'desktop', u'site': [u'perthnow', u'dailytelegraph']}</msg>
+<status status="PASS" endtime="20180306 00:08:16.809" starttime="20180306 00:08:16.808"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>The value of ${key} is ${value}</arg>
+</arguments>
+<status status="PASS" endtime="20180306 00:08:16.811" starttime="20180306 00:08:16.810"></status>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<arguments>
+<arg>${value}</arg>
+<arg>${matched_key}</arg>
+</arguments>
+<assign>
+<var>${device_name}</var>
+</assign>
+<msg timestamp="20180306 00:08:16.813" level="INFO">${device_name} = desktop</msg>
+<status status="PASS" endtime="20180306 00:08:16.813" starttime="20180306 00:08:16.812"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${device_name}'=='${matched_value}' or '${device_name}'=='all'</arg>
+<arg>append to list</arg>
+<arg>${final_list}</arg>
+<arg>${key}</arg>
+</arguments>
+<status status="PASS" endtime="20180306 00:08:16.815" starttime="20180306 00:08:16.814"></status>
+</kw>
+<status status="PASS" endtime="20180306 00:08:16.816" starttime="20180306 00:08:16.807"></status>
+</kw>
+<kw type="foritem" name="${key} = news story">
+<kw name="Get From Dictionary" library="Collections">
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<arguments>
+<arg>${json_object}</arg>
+<arg>${key}</arg>
+</arguments>
+<assign>
+<var>${value}</var>
+</assign>
+<msg timestamp="20180306 00:08:16.818" level="INFO">${value} = {u'device': u'all', u'site': u'all'}</msg>
+<status status="PASS" endtime="20180306 00:08:16.818" starttime="20180306 00:08:16.817"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>The value of ${key} is ${value}</arg>
+</arguments>
+<status status="PASS" endtime="20180306 00:08:16.820" starttime="20180306 00:08:16.818"></status>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<arguments>
+<arg>${value}</arg>
+<arg>${matched_key}</arg>
+</arguments>
+<assign>
+<var>${device_name}</var>
+</assign>
+<msg timestamp="20180306 00:08:16.821" level="INFO">${device_name} = all</msg>
+<status status="PASS" endtime="20180306 00:08:16.822" starttime="20180306 00:08:16.820"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${device_name}'=='${matched_value}' or '${device_name}'=='all'</arg>
+<arg>append to list</arg>
+<arg>${final_list}</arg>
+<arg>${key}</arg>
+</arguments>
+<kw name="Append To List" library="Collections">
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<arguments>
+<arg>${final_list}</arg>
+<arg>${key}</arg>
+</arguments>
+<status status="PASS" endtime="20180306 00:08:16.825" starttime="20180306 00:08:16.824"></status>
+</kw>
+<status status="PASS" endtime="20180306 00:08:16.825" starttime="20180306 00:08:16.822"></status>
+</kw>
+<status status="PASS" endtime="20180306 00:08:16.825" starttime="20180306 00:08:16.816"></status>
+</kw>
+<kw type="foritem" name="${key} = query">
+<kw name="Get From Dictionary" library="Collections">
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<arguments>
+<arg>${json_object}</arg>
+<arg>${key}</arg>
+</arguments>
+<assign>
+<var>${value}</var>
+</assign>
+<msg timestamp="20180306 00:08:16.828" level="INFO">${value} = {u'device': u'all', u'site': [u'perthnow', u'theaustralian']}</msg>
+<status status="PASS" endtime="20180306 00:08:16.828" starttime="20180306 00:08:16.826"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>The value of ${key} is ${value}</arg>
+</arguments>
+<status status="PASS" endtime="20180306 00:08:16.829" starttime="20180306 00:08:16.828"></status>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<arguments>
+<arg>${value}</arg>
+<arg>${matched_key}</arg>
+</arguments>
+<assign>
+<var>${device_name}</var>
+</assign>
+<msg timestamp="20180306 00:08:16.832" level="INFO">${device_name} = all</msg>
+<status status="PASS" endtime="20180306 00:08:16.832" starttime="20180306 00:08:16.830"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${device_name}'=='${matched_value}' or '${device_name}'=='all'</arg>
+<arg>append to list</arg>
+<arg>${final_list}</arg>
+<arg>${key}</arg>
+</arguments>
+<kw name="Append To List" library="Collections">
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<arguments>
+<arg>${final_list}</arg>
+<arg>${key}</arg>
+</arguments>
+<status status="PASS" endtime="20180306 00:08:16.836" starttime="20180306 00:08:16.835"></status>
+</kw>
+<status status="PASS" endtime="20180306 00:08:16.836" starttime="20180306 00:08:16.833"></status>
+</kw>
+<status status="PASS" endtime="20180306 00:08:16.836" starttime="20180306 00:08:16.826"></status>
+</kw>
+<kw type="foritem" name="${key} = video">
+<kw name="Get From Dictionary" library="Collections">
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<arguments>
+<arg>${json_object}</arg>
+<arg>${key}</arg>
+</arguments>
+<assign>
+<var>${value}</var>
+</assign>
+<msg timestamp="20180306 00:08:16.838" level="INFO">${value} = {u'device': u'desktop', u'site': [u'dailytelegraph', u'theaustralian']}</msg>
+<status status="PASS" endtime="20180306 00:08:16.838" starttime="20180306 00:08:16.837"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>The value of ${key} is ${value}</arg>
+</arguments>
+<status status="PASS" endtime="20180306 00:08:16.840" starttime="20180306 00:08:16.839"></status>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<arguments>
+<arg>${value}</arg>
+<arg>${matched_key}</arg>
+</arguments>
+<assign>
+<var>${device_name}</var>
+</assign>
+<msg timestamp="20180306 00:08:16.842" level="INFO">${device_name} = desktop</msg>
+<status status="PASS" endtime="20180306 00:08:16.842" starttime="20180306 00:08:16.841"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${device_name}'=='${matched_value}' or '${device_name}'=='all'</arg>
+<arg>append to list</arg>
+<arg>${final_list}</arg>
+<arg>${key}</arg>
+</arguments>
+<status status="PASS" endtime="20180306 00:08:16.844" starttime="20180306 00:08:16.843"></status>
+</kw>
+<status status="PASS" endtime="20180306 00:08:16.844" starttime="20180306 00:08:16.836"></status>
+</kw>
+<status status="PASS" endtime="20180306 00:08:16.845" starttime="20180306 00:08:16.799"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>The final list is ${final_list}</arg>
+</arguments>
+<status status="PASS" endtime="20180306 00:08:16.846" starttime="20180306 00:08:16.845"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${final_list}</arg>
+</arguments>
+<msg timestamp="20180306 00:08:16.848" level="INFO">${final_list} = [u'news story', u'query']</msg>
+<status status="PASS" endtime="20180306 00:08:16.848" starttime="20180306 00:08:16.847"></status>
+</kw>
+<status status="PASS" endtime="20180306 00:08:16.849" starttime="20180306 00:08:16.791"></status>
+</kw>
+<status status="PASS" endtime="20180306 00:08:16.850" starttime="20180306 00:08:16.790"></status>
+</kw>
+<kw name="Then the user should see the device all matching list" library="widget">
+<kw name="List Should Not Contain Value" library="Collections">
+<doc>Fails if the ``value`` is found from ``list``.</doc>
+<arguments>
+<arg>${final_list}</arg>
+<arg>ad</arg>
+</arguments>
+<status status="PASS" endtime="20180306 00:08:16.853" starttime="20180306 00:08:16.852"></status>
+</kw>
+<kw name="List Should Contain Value" library="Collections">
+<doc>Fails if the ``value`` is not found from ``list``.</doc>
+<arguments>
+<arg>${final_list}</arg>
+<arg>news story</arg>
+</arguments>
+<status status="PASS" endtime="20180306 00:08:16.854" starttime="20180306 00:08:16.853"></status>
+</kw>
+<kw name="List Should Contain Value" library="Collections">
+<doc>Fails if the ``value`` is not found from ``list``.</doc>
+<arguments>
+<arg>${final_list}</arg>
+<arg>query</arg>
+</arguments>
+<status status="PASS" endtime="20180306 00:08:16.856" starttime="20180306 00:08:16.855"></status>
+</kw>
+<kw name="List Should Not Contain Value" library="Collections">
+<doc>Fails if the ``value`` is found from ``list``.</doc>
+<arguments>
+<arg>${final_list}</arg>
+<arg>video</arg>
+</arguments>
+<status status="PASS" endtime="20180306 00:08:16.857" starttime="20180306 00:08:16.856"></status>
+</kw>
+<kw name="List Should Not Contain Value" library="Collections">
+<doc>Fails if the ``value`` is found from ``list``.</doc>
+<arguments>
+<arg>${final_list}</arg>
+<arg>image gallery</arg>
+</arguments>
+<status status="PASS" endtime="20180306 00:08:16.859" starttime="20180306 00:08:16.857"></status>
+</kw>
+<status status="PASS" endtime="20180306 00:08:16.859" starttime="20180306 00:08:16.850"></status>
+</kw>
+<status status="PASS" endtime="20180306 00:08:16.860" critical="yes" starttime="20180306 00:08:16.776"></status>
+</test>
+<status status="PASS" endtime="20180306 00:08:16.861" starttime="20180306 00:08:16.136"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="0" pass="2">Critical Tests</stat>
+<stat fail="0" pass="2">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="0" id="s1" name="Search" pass="2">Search</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
