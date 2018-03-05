@@ -1,5 +1,6 @@
 *** Settings ***
 Resource    ../../Digital/StepDefinitions/BddKeywords.robot
+Default Tags    smoke
 
 *** Test Cases ***
 Test Filter widgets by device which have the value mobile
