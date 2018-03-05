@@ -1,8 +1,5 @@
 *** Settings ***
 Library     JSONLibrary
-Library     RequestsLibrary
-Library     Selenium2Library
-Library     Process
 Library     Collections
 Library     CustomKeywords.py
 
